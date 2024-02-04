@@ -8,7 +8,11 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Repository;
 import varol.pelin.sena.flight_search_api.entity.Flight;
 
+import java.time.LocalDateTime;
+import java.util.List;
+
 @Repository
 public interface FlightRepository extends JpaRepository<Flight, Long>, JpaSpecificationExecutor<Flight> {
     Page<Flight> findAll(Specification<Flight> spec, Pageable pageable);
+
 }

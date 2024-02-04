@@ -1,12 +1,18 @@
 package varol.pelin.sena.flight_search_api.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import varol.pelin.sena.flight_search_api.entity.Flight;
 import varol.pelin.sena.flight_search_api.model.dto.FlightDto;
 import varol.pelin.sena.flight_search_api.model.request.FlightRequest;
+import varol.pelin.sena.flight_search_api.model.request.SearchFlightRequest;
+import varol.pelin.sena.flight_search_api.repository.FlightSpecification;
 import varol.pelin.sena.flight_search_api.service.FlightService;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -23,6 +29,15 @@ public class FlightController {
     @GetMapping
     public List<FlightDto> getAllFlights() {
         return flightService.getAllFlights();
+    }
+
+    @GetMapping("/search")
+    public ResponseEntity<List<FlightDto>> searchFlights(SearchFlightRequest searchFlightRequest) {
+
+        Specification<Flight> spec = FlightSpecification.searchFlights(searchFlightRequest);
+        List<FlightDto> flights = flightService.findAll(spec);
+
+        return ResponseEntity.ok(flights);
     }
 
     @PostMapping

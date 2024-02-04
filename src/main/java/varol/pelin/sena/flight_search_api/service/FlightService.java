@@ -2,6 +2,7 @@ package varol.pelin.sena.flight_search_api.service;
 
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import varol.pelin.sena.flight_search_api.entity.Airport;
 import varol.pelin.sena.flight_search_api.entity.Flight;
@@ -10,6 +11,9 @@ import varol.pelin.sena.flight_search_api.model.dto.FlightDto;
 import varol.pelin.sena.flight_search_api.model.request.FlightRequest;
 import varol.pelin.sena.flight_search_api.repository.FlightRepository;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -70,5 +74,10 @@ public class FlightService {
 
     public List<Flight> saveAll(List<Flight> flights) {
         return flightRepository.saveAll(flights);
+    }
+
+    public List<FlightDto> findAll(Specification<Flight> spec) {
+        List<Flight> flights = flightRepository.findAll(spec);
+        return flightMapper.flightDtoList(flights);
     }
 }

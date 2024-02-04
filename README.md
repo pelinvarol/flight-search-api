@@ -23,3 +23,27 @@
 
 ### Info:
 - In addition to the desired modeling structure, details such as bringing a single user, bringing all users and updating user information are provided.
+
+## Endpoints:
+### User-Controller
+- /api/users/{id} **(PUT)**
+- /api/users/{id} **(DELETE)**
+- /api/users **(GET)**
+### Flight-Controller
+- /api/flights/{id} **(GET)**
+- /api/flights/{id} **(PUT)**
+- /api/flights/{id} **(DELETE)**
+- /api/flights **(GET)**
+- /api/flights **(POST)**
+- /api/flights/search **(GET)**
+### Airport-Controller
+- /api/airport/{id} **(GET)**
+- /api/airport/{id} **(PUT)**
+- /api/airport/{id} **(DELETE)**
+- /api/airports **(GET)**
+- /api/airports **(POST)**
+### Auth-Controller
+- /api/auth/register **(POST)**
+- /api/auth/login **(POST)**
+### Mock-Controller
+- /api/mock/import/flights **(GET)**
